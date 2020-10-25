@@ -1,31 +1,38 @@
 
 var express = require('express');
 var app = express();
-// Node console
-
 // --> 7)  Mount the Logger middleware here
 
 
 // --> 11)  Mount the body-parser middleware  here
-
+var bodyParser = require('body-parser')
 
 /** 1) Meet the node console. */
 console.log("Hello World")
 
 /** 2) A first working Express Server */
+app.get("/", (req, res)=> {
+  res.send("Hello Express");
+});
 
 
 /** 3) Serve an HTML file */
-
+app.get("/", (req, res)=> {
+  res.sendFile(__dirname + "/public/index.html");
+});
 
 /** 4) Serve static assets  */
-
+app.use("/", express.static(__dirname + "/public"));
 
 /** 5) serve JSON on a specific route */
-
+app.get("/json", (req, res) => {
+  res.json({
+    message: "Hello json"
+  });
+});
 
 /** 6) Use the .env file to configure the app */
- 
+
  
 /** 7) Root-level Middleware - A logger */
 //  place it before all the routes !
